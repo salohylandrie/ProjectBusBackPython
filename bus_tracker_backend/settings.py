@@ -127,4 +127,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+ALLOWED_HOSTS = [
+    'localhost',          # Autoriser les requêtes locales
+    '127.0.0.1',         # Autoriser les requêtes de la boucle locale
+    '2f88-41-77-17-174.ngrok-free.app',  # Ajouter l'URL de ngrok
+]
+
+
 CORS_ALLOW_ALL_ORIGINS = True

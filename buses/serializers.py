@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Profile  # Ou votre modèle CustomUser si vous l'utilisez
 from django.contrib.auth import authenticate
+from .models import Trajet
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -53,3 +54,21 @@ class LoginSerializer(serializers.Serializer):
             'username': user.username,
             'role': profile.role  # Retourner le rôle de l'utilisateur
         }
+
+
+class TrajetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trajet
+        fields = ['idTrajet', 'pointDepart', 'pointArrive']
+
+    def create(self, validated_data):
+        # Crée un nouvel objet Trajet à partir des données validées
+        trajet = Trajet.objects.create(**validated_data)
+        return trajet
+
+    def update(self, instance, validated_data):
+        # Met à jour l'objet Trajet existant
+        instance.pointDepart = validated_data.get('pointDepart', instance.pointDepart)
+        instance.pointArrive = validated_data.get('pointArrive', instance.pointArrive)
+        instance.save()
+        return instance

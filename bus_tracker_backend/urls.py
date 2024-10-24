@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.urls import path
 from buses.views import RegisterView, LoginView
+from buses.views import create_trajet_api
+from buses.views import TrajetDetailView
+from buses.views import TrajetListView
+
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'), 
+    path('create_trajet/', create_trajet_api, name='create_trajet'),
+    path('trajets/<int:pk>/', TrajetDetailView.as_view(), name='trajet-detail'),
+    path('trajets/', TrajetListView.as_view(), name='trajet-list'),
 ]

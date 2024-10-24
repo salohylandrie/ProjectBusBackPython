@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ALLOWED_HOSTS = [
     'localhost',          # Autoriser les requêtes locales
     '127.0.0.1',         # Autoriser les requêtes de la boucle locale
-    '7e49-41-77-17-1.ngrok-free.app',  # Ajouter l'URL de ngrok
+    'd6f8-41-77-17-1.ngrok-free.app',  # Ajouter l'URL de ngrok
 ]
 
 

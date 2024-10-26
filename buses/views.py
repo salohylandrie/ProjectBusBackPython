@@ -10,7 +10,7 @@ from .serializers import TrajetSerializer
 from .models import Trajet
 from django.shortcuts import render
 from rest_framework import generics
-
+from django.http import JsonResponse
 
 
 
@@ -58,16 +58,8 @@ class TrajetDetailView(generics.RetrieveUpdateDestroyAPIView):
         return self.update(request, *args, **kwargs)
     
 
-class TrajetListView(generics.ListAPIView):
-    queryset = Trajet.objects.all()
-    serializer_class = TrajetSerializer
-
-    def get(self, request, *args, **kwargs):
-        trajets = self.get_queryset()  # Récupérer la liste des trajets
-        serializer = self.get_serializer(trajets, many=True)
-        return Response({
-            'message': 'Voici la liste des trajets disponibles',
-            'data': serializer.data
-        })
-
-    
+@api_view(['GET'])
+def trajet_list(request):
+    trajets = Trajet.objects.all()
+    serializer = TrajetSerializer(trajets, many=True)
+    return JsonResponse(serializer.data, safe=False, status=status.HTTP_200_OK)

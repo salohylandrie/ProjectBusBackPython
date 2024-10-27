@@ -19,6 +19,7 @@ from buses.views import RegisterView, LoginView
 from buses.views import create_trajet_api
 from buses.views import TrajetDetailView
 from buses.views import trajet_list
+from buses.views import delete_trajet
 
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'), 
     path('create_trajet/', create_trajet_api, name='create_trajet'),
     path('trajets/<int:pk>/', TrajetDetailView.as_view(), name='trajet-detail'),
+     path('trajetss/<int:pk>/', delete_trajet, name='trajet-detail'),
     path('trajetslien/', trajet_list, name='trajetslien'),
 ]
 

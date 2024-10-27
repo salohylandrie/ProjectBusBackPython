@@ -18,6 +18,7 @@ from django.http import JsonResponse
 
 
 
+
 class LoginView(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -63,3 +64,26 @@ def trajet_list(request):
     trajets = Trajet.objects.all()
     serializer = TrajetSerializer(trajets, many=True)
     return JsonResponse(serializer.data, safe=False, status=status.HTTP_200_OK)
+
+@api_view(['PUT'])
+def update_trajet(request, pk):
+    try:
+        trajet = Trajet.objects.get(pk=pk)
+    except Trajet.DoesNotExist:
+        return Response({'error': 'Trajet non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = TrajetSerializer(trajet, data=request.data, partial=True)  # Utilisez `partial=True` pour permettre les mises à jour partielles
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def delete_trajet(request, pk):
+    try:
+        trajet = Trajet.objects.get(pk=pk)
+    except Trajet.DoesNotExist:
+        return Response({'error': 'Trajet non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+
+    trajet.delete()
+    return Response({'message': 'Trajet supprimé avec succès'}, status=status.HTTP_204_NO_CONTENT)

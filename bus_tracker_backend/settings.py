@@ -137,6 +137,7 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "https://9c75-41-77-17-1.ngrok-free.app",
     "http://localhost:3000",
+    "https://project-bus-tracker-front2.vercel.app",
 ]
 
 
@@ -150,3 +151,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ]
 }
+
+
+

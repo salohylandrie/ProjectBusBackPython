@@ -71,4 +71,4 @@ class TrajetSerializer(serializers.ModelSerializer):
         instance.pointDepart = validated_data.get('pointDepart', instance.pointDepart)
         instance.pointArrive = validated_data.get('pointArrive', instance.pointArrive)
         instance.save()
-        return instance
+        return instance 

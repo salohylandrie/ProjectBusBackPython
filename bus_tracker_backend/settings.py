@@ -129,15 +129,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ALLOWED_HOSTS = [
     'localhost',          # Autoriser les requêtes locales
-    '127.0.0.1',         # Autoriser les requêtes de la boucle locale
-    '9c75-41-77-17-1.ngrok-free.app',  # Ajouter l'URL de ngrok
+    '127.0.0.1:8000',         # Autoriser les requêtes de la boucle locale
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://9c75-41-77-17-1.ngrok-free.app",
-    "http://localhost:3000",
-    "https://project-bus-tracker-front2.vercel.app",
+    "http://192.168.74.184:5173"
 ]
 
 
